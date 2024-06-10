@@ -14,7 +14,7 @@ from gevent import monkey
 
 monkey.patch_all()
 
-from ._version import version as __version__
+from ._version import version as __version__ # type: ignore
 from .contrib.fasthttp import FastHttpUser
 from .debug import run_single_user
 from .event import Events

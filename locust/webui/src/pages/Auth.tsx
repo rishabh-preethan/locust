@@ -52,7 +52,7 @@ export default function Auth({ authProviders, error, usernamePasswordCallback }:
             }}
             variant='h3'
           >
-            Locust
+            Hallmark
           </Typography>
         </Box>
         {usernamePasswordCallback && (

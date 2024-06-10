@@ -16,17 +16,20 @@ RUN if [ -n "$(arch | grep 'arm64\|aarch64')" ]; then apt install -y --no-instal
 RUN python -m venv /opt/venv
 ENV PATH="/opt/venv/bin:$PATH"
 COPY . /build
-RUN pip install /build/
+WORKDIR /build
+RUN pip install .
 
 FROM base
 COPY --from=builder /opt/venv /opt/venv
 COPY --from=webui-builder locust/webui/dist locust/webui/dist
+COPY locustfile.py /home/locust/locustfile.py
 ENV PATH="/opt/venv/bin:$PATH"
 # turn off python output buffering
 ENV PYTHONUNBUFFERED=1
 RUN useradd --create-home locust
 # ensure correct permissions
 RUN chown -R locust /opt/venv
+RUN chown locust /home/locust/locustfile.py
 USER locust
 WORKDIR /home/locust
 EXPOSE 8089 5557

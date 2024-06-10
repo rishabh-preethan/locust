@@ -1,6 +1,6 @@
-import { Container } from '@mui/material';
+import { Container, Typography } from '@mui/material';
 
-import About from 'components/Layout/Footer/About';
+// import About from 'components/Layout/Footer/About';
 
 export default function Footer() {
   return (
@@ -8,12 +8,23 @@ export default function Footer() {
       maxWidth='xl'
       sx={{
         display: 'flex',
-        height: 'var(--footer-height)',
+        flexDirection: 'column',
         alignItems: 'center',
-        justifyContent: 'flex-end',
+        justifyContent: 'center',
+        height: 'var(--footer-height)',
+        gap: 1, // Add gap between About and Typography components
       }}
     >
-      <About />
-    </Container>
+      {/* <About /> */}
+      <Typography
+        sx={{
+          color: 'grey',
+          fontSize: '0.875rem', // Smaller font size
+        }}
+        variant='body2'
+      >
+        Powered by Locust
+      </Typography>
+    </Container>// Added by Rishabh 6/5/24
   );
 }
